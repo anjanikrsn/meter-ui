@@ -1,0 +1,32 @@
+<div class="container">
+    <table class="table table-bordered table-inverse">
+      <tr>
+        <th>Id</th>
+        <th>Serial Number</th>
+        <th>Station Name</th>
+        <th>Quarter No</th>
+        <th>Reading Date</th>
+        <th class="text-right">Meter Reading</th>
+      </tr>
+      <tr *ngFor="let reading of readings">
+        <td>
+          {{reading.id}}
+        </td>
+        <td>
+          {{reading.serial_number}}
+        </td>
+        <td>
+          {{reading.stationName}}
+        </td>
+        <td class="text-right">
+          {{reading.quarterNumber}}
+        </td>
+        <td class="text-right">
+            {{reading.date}}
+        </td>
+        <td class="text-right">
+            {{reading.meterReading}}
+        </td>
+      </tr>
+    </table>
+  </div>

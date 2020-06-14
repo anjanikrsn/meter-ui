@@ -1,0 +1,56 @@
+<div class="container">
+    <table class="table table-bordered table-inverse">
+        <tr>
+            <th class="text-right">PF No</th>
+            <th class="text-right">Name</th>
+            <th class="text-right">Designation</th>
+            <th class="text-right">Quarter No</th>
+            <th class="text-right">Station</th>
+            <th class="text-right">Previous Reading</th>
+            <th class="text-right">Present Reading</th>
+            <th class="text-right">Unit</th>
+            <th class="text-right">Amount</th>
+            <th class="text-right">Arrears</th>
+            <th class="text-right">Total</th>
+            <th class="text-right">Remarks</th>
+        </tr>
+        <tr *ngFor="let reading of statements">
+            <td class="text-right"> 
+                {{reading.pf_NO}}
+            </td>
+            <td class="text-right">
+              {{reading.name}}
+            </td>
+            <td class="text-right">
+                {{reading.desg}}
+            </td>
+            <td class="text-right">
+                {{reading.qrtsNo}}
+            </td>
+            <td class="text-right">
+                {{reading.station}}
+            </td>
+            <td class="text-right">
+               {{reading.prevReading}}
+            </td>
+            <td class="text-right">
+                {{reading.presReading}}
+            </td>
+            <td class="text-right">
+                {{reading.units}}
+            </td>
+            <td class="text-right">
+                {{reading.amount}}
+            </td>
+            <td class="text-right">
+                {{reading.arrearAmount}}
+            </td>
+            <td class="text-right">
+                {{reading.totalAmount}}
+            </td>
+            <td class="text-right">
+                {{reading.remarks}}
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="submitReading()" novalidate>
+        <div *ngIf="validMessage != ''">
+            <h3 class="has-info">{{validMessage}}</h3>
+        </div>
+        <div class="form-group">
+            <label>Select Month</label>
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker"
+                    formControlName="readingDate">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">📅</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Station Name</label>
+            <select class="form-control" (change)="stationChange($event)" formControlName="stationName" required>
+                <option value="">Please select a station name</option>
+                <option *ngFor="let s of stations" [value]="s.stationCode">
+                    {{s.stationName}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+                <label>Quarter Number</label>
+                <select class="form-control" formControlName="quarterNumber" required>
+                    <option value="">Please select a quarter number</option>
+                    <option *ngFor="let q of allQuarterList" [value]="q">
+                        {{q}}
+                    </option>
+                </select>
+            </div>
+        <div class="form-group">
+            <label>Meter Reading</label>
+            <input type="number" min="1" class="form-control" formControlName="presReading" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
