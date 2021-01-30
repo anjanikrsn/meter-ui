@@ -15,18 +15,23 @@ export class HomeComponent implements OnInit {
   public stations;
   public quarters;
   public allQuarterList: any[];
+  public readings;
+  public ems;
+  public allEMSList;
   constructor(private readingService : ReadingsService) { }
   
   ngOnInit(): void {
     this.form = new FormGroup({
-      readingDate : new FormControl('', Validators.required),
-        stationName : new FormControl('', Validators.required),
-        quarterNumber : new FormControl('', Validators.required),
-        presReading : new FormControl('', Validators.required)
+     // readingDate : new FormControl('', Validators.required),
+      //  stationName : new FormControl('', Validators.required),
+      //  quarterNumber : new FormControl('', Validators.required),
+      //  presReading : new FormControl('', Validators.required),
+        emsNumber : new FormControl('', Validators.required),
     });
 
     this.getStationList();
     this.getQuarterList();
+    this.getEMSList();
   }
 
   getStationList() {
@@ -96,5 +101,28 @@ export class HomeComponent implements OnInit {
       this.allQuarterList = recordsSorted;
   
 
+  }
+
+  getEMSList() {
+    this.readingService.getEMSList().subscribe (
+      data => { this.ems = data },
+      err => console.error(err),
+      () => console.log('EMS loaded')
+    );
+  }
+
+  searchReading() {
+    if(this.form.valid){
+      this.validMessage = "Loading... ";
+      console.log("ems = ",this.form.value);
+      this.readingService.getEMSReadings(this.form.value).subscribe (
+        data => { this.readings = data ; this.validMessage = "";},
+        err => console.error(err),
+        () => console.log('EMS loaded')
+      );
+    }
+    else {
+      this.validMessage = "Please fill out the form beform submitting";
+    }
   }
 }

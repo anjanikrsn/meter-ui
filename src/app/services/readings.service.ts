@@ -37,4 +37,13 @@ export class ReadingsService {
   getStatementList() {
     return this.http.get('/server/api/v1/statements');
   }
+
+  //for ems meter
+  getEMSList() {
+    return this.http.get('/server/api/v1/ems');
+  }
+
+  getEMSReadings(ems) {
+    return this.http.get('/server/api/v1/emsreadings/'+ems.emsNumber);
+  }
 }
