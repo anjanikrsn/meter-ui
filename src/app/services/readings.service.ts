@@ -2,8 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders} from '@angular/common/http';
 //import { Observable } from 'rxjs/Observable';
 
+let token = sessionStorage.getItem('token');
 const httpOptions = {
-  headers : new HttpHeaders({ 'Content-Type' : 'application/json'})
+  headers : new HttpHeaders(
+            { 
+              'Content-Type' : 'application/json',
+              'Authorization' : token
+            }
+            )
 };
 
 @Injectable({
@@ -14,11 +20,11 @@ export class ReadingsService {
   constructor(private http:HttpClient) { }
 
   getReadings() {
-    return this.http.get('/server/api/v1/readings');
+    return this.http.get('/server/api/v1/readings', httpOptions);
   }
 
   getReading(id : string) {
-    return this.http.get('/server/api/v1/readings/'+id)
+    return this.http.get('/server/api/v1/readings/'+id, httpOptions)
   }
 
   createReading(meter){
@@ -27,11 +33,11 @@ export class ReadingsService {
   }
 
   getStationList() {
-    return this.http.get('/server/api/v1/stations');
+    return this.http.get('/server/api/v1/stations', httpOptions);
   }
 
   getQuarterList() {
-    return this.http.get('/server/api/v1/quarters');
+    return this.http.get('/server/api/v1/quarters', httpOptions);
   }
 
   getStatementList() {
@@ -40,10 +46,10 @@ export class ReadingsService {
 
   //for ems meter
   getEMSList() {
-    return this.http.get('/server/api/v1/ems');
+    return this.http.get('/server/api/v1/ems', httpOptions);
   }
 
   getEMSReadings(ems) {
-    return this.http.get('/server/api/v1/emsreadings/'+ems.emsNumber);
+    return this.http.get('/server/api/v1/emsreadings/'+ems.emsNumber, httpOptions);
   }
 }
